@@ -260,24 +260,24 @@ class QueryRouterAgent:
         """Generate human-readable explanation of routing decision"""
         
         if not routing_result.get("success"):
-            return "❌ Failed to analyze your query. Please try rephrasing."
+            return " Failed to analyze your query. Please try rephrasing."
         
         intent = routing_result.get("intent", "unknown")
         confidence = routing_result.get("confidence", 0)
         agents = routing_result.get("required_agents", [])
         entities = routing_result.get("extracted_entities", {})
         
-        explanation = f"🎯 **Intent Detected**: {intent.title()} (confidence: {confidence:.1%})\n\n"
+        explanation = f" **Intent Detected**: {intent.title()} (confidence: {confidence:.1%})\n\n"
         
         if entities:
-            explanation += "📋 **Extracted Information**:\n"
+            explanation += " **Extracted Information**:\n"
             for key, value in entities.items():
                 if value:
                     explanation += f"   • {key.title()}: {value}\n"
             explanation += "\n"
         
-        explanation += f"🤖 **Agents Assigned**: {', '.join(agents)}\n\n"
-        explanation += f"💭 **Reasoning**: {routing_result.get('reasoning', 'Intent-based routing')}"
+        explanation += f" **Agents Assigned**: {', '.join(agents)}\n\n"
+        explanation += f" **Reasoning**: {routing_result.get('reasoning', 'Intent-based routing')}"
         
         return explanation
 
@@ -295,8 +295,8 @@ if __name__ == "__main__":
     ]
     
     for query in test_queries:
-        print(f"\n🔍 Query: {query}")
+        print(f"\n Query: {query}")
         result = router.route_query(query)
-        print(f"📊 Result: {result['intent']} -> {result['required_agents']}")
-        print(f"📝 Entities: {result['extracted_entities']}")
+        print(f"Result: {result['intent']} -> {result['required_agents']}")
+        print(f" Entities: {result['extracted_entities']}")
         print("-" * 50)
