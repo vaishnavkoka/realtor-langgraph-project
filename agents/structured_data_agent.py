@@ -331,26 +331,26 @@ class StructuredDataAgent:
         entities = current_criteria.get("extracted_entities", {})
         
         if not entities.get("location") and not entities.get("city"):
-            suggestions.append("💡 Try specifying a location (e.g., 'in Bangalore', 'Whitefield area', 'HSR Layout')")
+            suggestions.append(" Try specifying a location (e.g., 'in Bangalore', 'Whitefield area', 'HSR Layout')")
         
         if not entities.get("budget"):
-            suggestions.append("💡 Add a budget range (e.g., 'under 50 lakhs', 'between 30-40 lakhs')")
+            suggestions.append(" Add a budget range (e.g., 'under 50 lakhs', 'between 30-40 lakhs')")
         
         if not entities.get("num_rooms") and not entities.get("bedrooms"):
-            suggestions.append("💡 Specify number of rooms (e.g., '2 rooms', '3BHK', '4 bedroom')")
+            suggestions.append(" Specify number of rooms (e.g., '2 rooms', '3BHK', '4 bedroom')")
         
         if not entities.get("property_size_sqft"):
-            suggestions.append("💡 Add size requirement (e.g., 'more than 1000 sqft', 'under 1500 square feet')")
+            suggestions.append(" Add size requirement (e.g., 'more than 1000 sqft', 'under 1500 square feet')")
         
         if not entities.get("seller_type"):
-            suggestions.append("💡 Filter by seller type: 'by owner', 'from agent', 'builder properties'")
+            suggestions.append(" Filter by seller type: 'by owner', 'from agent', 'builder properties'")
         
         # Additional suggestions based on available data
         suggestions.extend([
-            "🔍 Search in descriptions: 'with parking', 'furnished apartment', 'ready to move'",
-            "� Filter by listing date: 'recently listed', 'posted this month'",
-            "📄 Properties with certificates: 'verified documents', 'with certificates'",
-            "📞 Direct owner contact: 'owner properties', 'no broker'"
+            " Search in descriptions: 'with parking', 'furnished apartment', 'ready to move'",
+            " Filter by listing date: 'recently listed', 'posted this month'",
+            " Properties with certificates: 'verified documents', 'with certificates'",
+            " Direct owner contact: 'owner properties', 'no broker'"
         ])
         
         return suggestions[:3]  # Return top 3 suggestions
@@ -437,12 +437,12 @@ if __name__ == "__main__":
     
     if result["properties"]:
         first_prop = result['properties'][0]
-        print(f"📋 First property: {first_prop['title']}")
-        print(f"💰 Price: ₹{first_prop['price']:,}")
-        print(f"📍 Location: {first_prop['location']}")
-        print(f"🏠 Rooms: {first_prop['num_rooms']}")
-        print(f"📏 Size: {first_prop['property_size_sqft']} sqft")
-        print(f"👤 Seller: {first_prop['seller_type']}")
+        print(f" First property: {first_prop['title']}")
+        print(f" Price: ₹{first_prop['price']:,}")
+        print(f" Location: {first_prop['location']}")
+        print(f" Rooms: {first_prop['num_rooms']}")
+        print(f" Size: {first_prop['property_size_sqft']} sqft")
+        print(f" Seller: {first_prop['seller_type']}")
     else:
-        print("ℹ️ No properties found. Database might be empty.")
-        print("💡 Run the data ingestion script to populate the database first.")
+        print("ℹ No properties found. Database might be empty.")
+        print(" Run the data ingestion script to populate the database first.")
