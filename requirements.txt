@@ -1,1 +1,11 @@
 dotenv
+PyPDF2
+faiss-cpu
+sentence-transformers
+transformers
+torch
+sqlalchemy
+psycopg2-binary
+pandas
+openpyxl
+pandas
