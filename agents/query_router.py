@@ -11,6 +11,7 @@ import logging
 import re
 from models.free_models import get_primary_llm
 from models.rate_limiter import rate_limiter
+from utils.rate_limiter import groq_rate_limiter, rate_limited
 
 logger = logging.getLogger(__name__)
 
@@ -149,6 +150,7 @@ class QueryRouterAgent:
             logger.error(f"LLM routing failed: {e}")
             return self._fallback_routing(query)
     
+    @rate_limited(groq_rate_limiter)
     def _llm_based_routing(self, query: str) -> Dict[str, Any]:
         """Use LLM for sophisticated intent detection and entity extraction"""
         
