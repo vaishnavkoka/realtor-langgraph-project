@@ -30,7 +30,7 @@ class Property(Base):
     seller_type = Column(String(20), nullable=False)
     listing_date = Column(DateTime, nullable=False)
     certificates = Column(String(500))  # Comma-separated certificate files
-    seller_contact = Column(Float)
+    seller_contact = Column(String(20))  # Formatted phone number
     metadata_tags = Column(String(300))
     
     # Additional fields for processing
@@ -109,7 +109,7 @@ if __name__ == "__main__":
     print(f"Database URL: {db_url}")
     
     engine = create_database(db_url)
-    print(" Database schema created successfully!")
+    print("Database schema created successfully!")
     
     # Test connection
     session = get_session(db_url)
