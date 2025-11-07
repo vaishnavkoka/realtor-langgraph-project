@@ -1,8 +1,10 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 
-
+.env
 # Project specific
 
 *.db
 *.sqlite3
+vector_db/
+generated_reports/
