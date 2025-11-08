@@ -1,26 +1,56 @@
-dotenv
-PyPDF2
-faiss-cpu
-sentence-transformers
-transformers
-torch
+# Core Python Libraries
+streamlit
+fastapi
+uvicorn
+requests
+pandas
+numpy
+
+# Database & Storage
 sqlalchemy
 psycopg2-binary
-pandas
-openpyxl
+sqlite3
 
-# LangChain and Multi-Agent Framework
-langchain>=0.3.0
+# Data Processing & File Handling
+openpyxl
+PyPDF2
+python-dotenv
+
+# Machine Learning & AI
+torch
+transformers
+sentence-transformers
+faiss-cpu
+scikit-learn
+
+# LangChain Ecosystem
+langchain
 langchain-groq
 langchain-huggingface
 langchain-community
-groq
-tavily-python
-tiktoken
+langraph
 
-# Additional utilities
-python-dotenv
+# LLM & API Integrations
+groq
+openai
+huggingface-hub
+
+# Web Scraping & HTTP
 aiohttp
 beautifulsoup4
+tavily-python
+
+# Visualization & Charts
+plotly
+matplotlib
+seaborn
+
+# Utilities & Tools
+tiktoken
 redis
-pandas
+pydantic
+typing-extensions
+
+# Development & Testing
+pytest
+python-multipart
