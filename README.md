@@ -97,6 +97,7 @@ Real-Estate-Search-Engine/
 ├── 🚀 Core Application Files
 │   ├── backend.py                          # FastAPI server with all 8 agents
 │   ├── frontend.py                         # Streamlit UI with AI report generator
+│   └── api_gateway.py                      # Backend utility functions
 │   
 ├── 🤖 Multi-Agent System
 │   └── agents/
