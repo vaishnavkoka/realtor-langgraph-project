@@ -1,8 +1,8 @@
-# 🏠 Real Estate Search Engine
+# 🏠 ReAltoR Search Engine
 
-AI-powered multi-agent real estate search system with intelligent property matching, semantic search, and comprehensive reporting features.
+Multi-agent real estate search system with intelligent property matching, semantic search, and comprehensive reporting features.
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Install Dependencies
 ```bash
@@ -14,11 +14,8 @@ conda env create -n case_study --file requirements.yml
 
 #### Create Structured Database:
 ```bash
-# Navigate to src directory
-cd src
-
 # Run data ingestion to create structured database
-python data_ingestion.py
+python src/data_ingestion.py
 ```
 This creates:
 - `realestate.db` - SQLite database with 80+ properties
@@ -90,7 +87,6 @@ streamlit run frontend.py --server.port 8502
 ### Missing database:
 ```bash
 # Recreate databases
-cd src
 python data_ingestion.py
 ```
 
@@ -98,18 +94,71 @@ python data_ingestion.py
 
 ```
 Real-Estate-Search-Engine/
-├── backend.py                 # FastAPI server
-├── frontend.py               # Streamlit interface
-├── requirements.txt          # Dependencies
-├── agents/                   # AI agents
-├── src/                     # Data processing
-│   └── data_ingestion.py    # Database creation
-├── data/                    # Databases
-│   └── realestate.db       # Property database
-└── vector_db/              # Vector embeddings
-    └── faiss_index.pkl     # FAISS index
+├── 🚀 Core Application Files
+│   ├── backend.py                          # FastAPI server with all 8 agents
+│   ├── frontend.py                         # Streamlit UI with AI report generator
+│   
+├── 🤖 Multi-Agent System
+│   └── agents/
+│       ├── query_router.py                 # Intent classification & routing
+│       ├── structured_data_agent.py        # SQL database search
+│       ├── rag_agent.py                    # Semantic search & fallback
+│       ├── web_research_agent.py           # External market data
+│       ├── report_generation_agent.py      # Charts & PDF reports
+│       ├── renovation_estimation_agent.py  # Cost calculations
+│       ├── planner_agent.py               # Task coordination
+│       ├── memory_enhanced_planner.py     # Context-aware planning
+│       ├── langgraph_orchestrator.py      # Multi-agent workflow
+│       └── memory_component.py            # User preference learning
+│       
+├── 💾 Data Management
+│   ├── data/                              # Property data files
+│   ├── vector_db/                         # FAISS vector storage
+│   │   ├── index.faiss                   # Vector embeddings index
+│   │   ├── index.pkl                     # Metadata mappings
+│   │   └── docstore.pkl                  # Document storage
+│   ├── memory_storage/                    # Session persistence
+│   └── real_estate_memory.db             # User memory & preferences
+│   
+├── 🛠️ Core Components
+│   ├── src/                              # Data processing utilities
+│   ├── components/                       # Reusable components
+│   ├── models/                          # Data models & configurations
+│   ├── utils/                           # Utility functions
+│   └── config/                          # Configuration management
+│   
+├── 📋 Configuration & Environment
+│   ├── .env                             # Environment variables (keep secure)
+│   ├── .env.template                    # Environment template
+│   ├── requirements.yml                 # Conda environment file
+│   └── .gitignore                      # Git ignore patterns
+│   
+├── 📊 Documentation & Reports
+│   ├── README.md                        # This comprehensive guide
+│   ├── ReAltoR.pdf                      # Project documentation
+│   
+├── 🗂️ Assets & Resources
+│   └── assets/                          # Static files & resources
+
 ```
 
-## 🎉 You're Ready!
+### 🎯 Key Components Explained:
 
-Your AI-powered Real Estate Search Engine is now running with both structured and unstructured data capabilities!
+**🤖 agents/** - 8 specialized AI agents orchestrated through LangGraph for intelligent real estate search
+
+**💾 Data Layer** - SQLite databases, FAISS vector storage, and persistent memory management
+
+**🛠️ Processing** - Data ingestion, schema management, and utility functions
+
+**📋 Environment** - Secure configuration with environment variables and conda setup
+
+**📊 Documentation** - Comprehensive guides, architecture docs, and generated reports
+
+### 🏗️ Architecture Overview:
+- **Frontend**: Streamlit UI with AI visual report generator
+- **Backend**: FastAPI with 8 specialized agents
+- **Memory**: Persistent user preferences and session management
+- **Data**: 80+ properties with vector search capabilities
+- **Orchestration**: LangGraph for multi-agent workflows
+
+## 🎉 You're Ready!
