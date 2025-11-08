@@ -7,7 +7,7 @@ Multi-agent real estate search system with intelligent property matching, semant
 ### 1. Install Dependencies
 ```bash
 # Install all required packages
-conda env create -n case_study --file requirements.yml
+conda env create -n realtor-ai-env --file requirements.yml
 ```
 
 ### 2. Environment Configuration (Required)
