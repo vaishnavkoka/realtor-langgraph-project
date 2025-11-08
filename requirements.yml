@@ -1,4 +1,4 @@
-name: smartsense
+name: realtor-ai-env
 channels:
   - conda-forge
   - pytorch

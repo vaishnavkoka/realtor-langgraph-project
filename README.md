@@ -10,7 +10,30 @@ Multi-agent real estate search system with intelligent property matching, semant
 conda env create -n case_study --file requirements.yml
 ```
 
-### 2. Data Setup (First Time Only)
+### 2. Environment Configuration (Required)
+
+The project uses a `.env.template` file for secure API key management. **All features require API keys** - the application provides free tier options for testing.
+
+#### Setup Environment Variables:
+```bash
+# Copy the template file
+cp .env.template .env
+
+# Edit .env with your actual API keys
+nano .env  # or use any text editor
+```
+
+#### Required API Keys (Free Tier Available):
+- **🤖 GROQ_API_KEY**: [Get free key](https://console.groq.com/keys) - 25,000 requests/day
+- **🔍 SERPER_API_KEY**: [Get free key](https://serper.dev/) - 2,400 searches/month  
+- **🌐 TAVILY_API_KEY**: [Get free key](https://tavily.com/) - 950 searches/month
+- **🤗 HUGGINGFACE_API_KEY**: [Get free token](https://huggingface.co/settings/tokens) - No limits
+- **📊 COHERE_API_KEY**: [Get free key](https://dashboard.cohere.ai/) - 100 requests/month
+
+
+> **⚠️ Security Note**: Never commit your `.env` file to version control. It contains sensitive API keys and is already included in `.gitignore`.
+
+### 3. Data Setup (First Time Only)
 
 #### Create Structured Database:
 ```bash
