@@ -431,9 +431,9 @@ if __name__ == "__main__":
         "query": "Find 2BHK apartment in Bangalore under 50 lakhs"
     }
     
-    print("🔍 Testing Structured Data Agent with actual database schema")
+    print(" Testing Structured Data Agent with actual database schema")
     result = agent.search_properties(test_criteria)
-    print(f"📊 Found {result['count']} properties")
+    print(f" Found {result['count']} properties")
     
     if result["properties"]:
         first_prop = result['properties'][0]
