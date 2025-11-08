@@ -47,7 +47,7 @@ class PropertyETL:
     """ETL Pipeline for Real Estate Property Data"""
     
     def __init__(self, excel_path: str = None, db_url: str = None):
-        self.excel_path = excel_path or os.getenv('PROPERTY_DATA_FILE', '../assets/Property_list.xlsx')
+        self.excel_path = excel_path or os.getenv('PROPERTY_DATA_FILE', './assets/Property_list.xlsx')
         self.db_url = db_url or get_database_url('sqlite')
         self.assets_dir = Path(os.getenv('ASSETS_DIR', './assets'))
         self.certificates_dir = Path(os.getenv('CERTIFICATES_DIR', './assets/certificates'))
