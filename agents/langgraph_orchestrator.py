@@ -105,7 +105,7 @@ class LangGraphRealEstateOrchestrator:
     """
     
     def __init__(self):
-        logger.info("🚀 Initializing LangGraph Real Estate Orchestrator...")
+        logger.info(" Initializing LangGraph Real Estate Orchestrator...")
         
         # Initialize all available agents
         self.agents = {
@@ -125,7 +125,7 @@ class LangGraphRealEstateOrchestrator:
         self.workflow = self._build_workflow()
         self.app = self.workflow.compile()
         
-        logger.info("✅ LangGraph Orchestrator initialized with 6 specialized agents!")
+        logger.info(" LangGraph Orchestrator initialized with 6 specialized agents!")
 
     def _build_workflow(self) -> StateGraph:
         """Build the comprehensive LangGraph workflow for agent orchestration"""
@@ -208,7 +208,7 @@ class LangGraphRealEstateOrchestrator:
 
     async def _analyze_query_intent(self, state: AgentWorkflowState) -> AgentWorkflowState:
         """Analyze user query to understand intent and complexity"""
-        logger.info("🔍 Analyzing query intent and complexity...")
+        logger.info(" Analyzing query intent and complexity...")
         
         try:
             query = state["original_query"]
@@ -270,7 +270,7 @@ class LangGraphRealEstateOrchestrator:
                 "analyzed_at": datetime.now().isoformat()
             }
             
-            logger.info(f"📊 Query Analysis: Intent={analysis['primary_intent']}, Complexity={analysis['complexity']}")
+            logger.info(f" Query Analysis: Intent={analysis['primary_intent']}, Complexity={analysis['complexity']}")
             
         except Exception as e:
             logger.error(f"Query analysis failed: {e}")
@@ -283,7 +283,7 @@ class LangGraphRealEstateOrchestrator:
 
     async def _determine_required_agents(self, state: AgentWorkflowState) -> AgentWorkflowState:
         """Determine which agents are required based on query analysis"""
-        logger.info("🎯 Determining required agents for execution...")
+        logger.info(" Determining required agents for execution...")
         
         query = state["original_query"].lower()
         intent = state["query_intent"]
@@ -313,31 +313,31 @@ class LangGraphRealEstateOrchestrator:
            any(keyword in query for keyword in ["bhk", "bedroom", "property", "house", "apartment", "flat", "villa", "location", "city", "price", "buy", "purchase", "find", "available"]):
             required_agents.append("structured_data")
             priorities["structured_data"] = 0.8  # Primary for property searches
-            logger.info("🗃️ Structured Data Agent selected")
+            logger.info(" Structured Data Agent selected")
             
             # ALWAYS add RAG agent for property searches to provide fallback and enhancement
             required_agents.append("rag")
             priorities["rag"] = 0.7  # Complementary to structured search
-            logger.info("🧠 RAG Agent selected (automatic for property searches)")
+            logger.info(" RAG Agent selected (automatic for property searches)")
         
         # 4. RAG Agent for complex queries (standalone)
         elif complexity in ["moderate", "complex"] or analysis.get("domain_focus") in ["market", "investment"]:
             required_agents.append("rag")
             priorities["rag"] = 0.8  # Higher priority when standalone
-            logger.info("🧠 RAG Agent selected (standalone for complex queries)")
+            logger.info(" RAG Agent selected (standalone for complex queries)")
         
         # 5. Web Research Agent for current market info
         if any(keyword in query for keyword in ["current", "latest", "recent", "trend", "market"]) or analysis.get("requires_external_research", False):
             required_agents.append("web_research")
             priorities["web_research"] = 0.5
-            logger.info("🌐 Web Research Agent selected")
+            logger.info("Web Research Agent selected")
         
         # Default to comprehensive search if no agents selected
         if not required_agents:
             required_agents = ["structured_data", "rag"]  # Use both for better coverage
             priorities["structured_data"] = 0.8
             priorities["rag"] = 0.7
-            logger.info("🔧 Default: Structured Data + RAG Agents selected")
+            logger.info(" Default: Structured Data + RAG Agents selected")
         
         # Update state
         state["required_agents"] = required_agents
@@ -346,7 +346,7 @@ class LangGraphRealEstateOrchestrator:
         state["agent_results"] = {}
         state["agent_errors"] = {}
         
-        logger.info(f"✅ Selected {len(required_agents)} agents: {required_agents}")
+        logger.info(f" Selected {len(required_agents)} agents: {required_agents}")
         
         return state
 
@@ -380,7 +380,7 @@ class LangGraphRealEstateOrchestrator:
 
     async def _execute_structured_data_agent(self, state: AgentWorkflowState) -> AgentWorkflowState:
         """Execute structured data search agent"""
-        logger.info("🗃️ Executing Structured Data Agent...")
+        logger.info(" Executing Structured Data Agent...")
         
         try:
             agent = self.agents["structured_data"]
@@ -399,11 +399,11 @@ class LangGraphRealEstateOrchestrator:
             state["active_agents"].append("structured_data")
             
             properties_found = len(result.get('properties', []))
-            logger.info(f"✅ Structured Data Agent completed: Found {properties_found} properties")
+            logger.info(f" Structured Data Agent completed: Found {properties_found} properties")
             
             # If no properties found, automatically activate RAG agent for additional context
             if properties_found == 0:
-                logger.info("🔄 No properties found, activating RAG agent for additional context...")
+                logger.info(" No properties found, activating RAG agent for additional context...")
                 
                 # Add RAG agent to required agents if not already present
                 if "rag" not in state.get("required_agents", []):
@@ -427,7 +427,7 @@ class LangGraphRealEstateOrchestrator:
             if "rag" not in state.get("required_agents", []):
                 state.setdefault("required_agents", []).append("rag")
             state["needs_rag_fallback"] = True
-            logger.info("🔄 Structured search failed, activating RAG agent for fallback...")
+            logger.info(" Structured search failed, activating RAG agent for fallback...")
         
         return state
 
@@ -471,7 +471,7 @@ class LangGraphRealEstateOrchestrator:
 
     async def _execute_rag_agent(self, state: AgentWorkflowState) -> AgentWorkflowState:
         """Execute RAG semantic search agent"""
-        logger.info("🧠 Executing RAG Agent...")
+        logger.info(" Executing RAG Agent...")
         
         try:
             agent = self.agents["rag"]
@@ -534,7 +534,7 @@ class LangGraphRealEstateOrchestrator:
             
             state["active_agents"].append("rag")
             
-            logger.info("✅ RAG Agent completed semantic search")
+            logger.info(" RAG Agent completed semantic search")
             
         except Exception as e:
             logger.error(f"RAG Agent failed: {e}")
@@ -550,7 +550,7 @@ class LangGraphRealEstateOrchestrator:
 
     async def _execute_web_research_agent(self, state: AgentWorkflowState) -> AgentWorkflowState:
         """Execute web research agent"""
-        logger.info("🌐 Executing Web Research Agent...")
+        logger.info(" Executing Web Research Agent...")
         
         try:
             agent = self.agents["web_research"]
@@ -562,7 +562,7 @@ class LangGraphRealEstateOrchestrator:
             state["agent_results"]["web_research"] = result
             state["active_agents"].append("web_research")
             
-            logger.info("✅ Web Research Agent completed")
+            logger.info(" Web Research Agent completed")
             
         except Exception as e:
             logger.error(f"Web Research Agent failed: {e}")
@@ -586,7 +586,7 @@ class LangGraphRealEstateOrchestrator:
             state["agent_results"]["report_generation"] = result
             state["active_agents"].append("report_generation")
             
-            logger.info(f"✅ Report Generation Agent completed: {result.get('report_type')}")
+            logger.info(f" Report Generation Agent completed: {result.get('report_type')}")
             
         except Exception as e:
             logger.error(f"Report Generation Agent failed: {e}")
@@ -659,7 +659,7 @@ class LangGraphRealEstateOrchestrator:
             state["agent_results"]["renovation_estimation"] = result_dict
             state["active_agents"].append("renovation_estimation")
             
-            logger.info(f"✅ Renovation Estimation Agent completed: ₹{result.total_cost:,.0f}")
+            logger.info(f" Renovation Estimation Agent completed: ₹{result.total_cost:,.0f}")
             
         except Exception as e:
             logger.error(f"Renovation Estimation Agent failed: {e}")
@@ -695,8 +695,8 @@ class LangGraphRealEstateOrchestrator:
 
     async def _synthesize_agent_results(self, state: AgentWorkflowState) -> AgentWorkflowState:
         """Synthesize results from all executed agents"""
-        logger.info("🔄 Synthesizing results from all agents...")
-        
+        logger.info(" Synthesizing results from all agents...")
+    
         try:
             agent_results = state["agent_results"]
             agent_errors = state["agent_errors"]
@@ -733,7 +733,7 @@ class LangGraphRealEstateOrchestrator:
             state["synthesized_result"] = synthesis
             state["confidence_score"] = synthesis["confidence_score"]
             
-            logger.info(f"✅ Synthesis completed. Primary agent: {best_agent}, Confidence: {synthesis['confidence_score']}")
+            logger.info(f" Synthesis completed. Primary agent: {best_agent}, Confidence: {synthesis['confidence_score']}")
             
         except Exception as e:
             logger.error(f"Result synthesis failed: {e}")
@@ -744,7 +744,7 @@ class LangGraphRealEstateOrchestrator:
 
     async def _generate_final_response(self, state: AgentWorkflowState) -> AgentWorkflowState:
         """Generate final comprehensive response"""
-        logger.info("📝 Generating final response...")
+        logger.info(" Generating final response...")
         
         try:
             synthesis = state["synthesized_result"]
@@ -765,17 +765,17 @@ class LangGraphRealEstateOrchestrator:
                     response = f"🔍 No exact matches found for '{query}'\n\n"
                     
                     if structured_result.get("success", True):
-                        response += "✅ Database searched successfully - 0 properties match your criteria\n"
+                        response += " Database searched successfully - 0 properties match your criteria\n"
                     else:
-                        response += f"⚠️ Database search encountered issues: {structured_result.get('error', 'Unknown error')}\n"
+                        response += f" Database search encountered issues: {structured_result.get('error', 'Unknown error')}\n"
                     
-                    response += "\n🧠 Alternative suggestions from market analysis:\n"
+                    response += "\n Alternative suggestions from market analysis:\n"
                     
                     if rag_result.get("fallback_suggestions"):
                         for i, suggestion in enumerate(rag_result["fallback_suggestions"][:3], 1):
                             response += f"{i}. {suggestion.get('query', 'Alternative search')}\n"
                     
-                    response += "\n💡 Consider:\n"
+                    response += "\n Consider:\n"
                     response += "• Expanding your search area\n"
                     response += "• Adjusting room requirements\n" 
                     response += "• Checking similar property types\n"
@@ -810,13 +810,13 @@ class LangGraphRealEstateOrchestrator:
                         response += f"... and {len(properties) - 3} more properties"
                         
                 else:
-                    response = f"✅ Query processed successfully using {len(state['active_agents'])} agents"
+                    response = f" Query processed successfully using {len(state['active_agents'])} agents"
             else:
                 response = "❌ Unable to process query. Please try again."
             
             state["final_response"] = response
             
-            logger.info("✅ Final response generated")
+            logger.info(" Final response generated")
             
         except Exception as e:
             logger.error(f"Response generation failed: {e}")
@@ -838,7 +838,7 @@ class LangGraphRealEstateOrchestrator:
         Returns:
             Comprehensive response with agent results and metadata
         """
-        logger.info(f"🚀 Processing query through LangGraph orchestration: '{query[:50]}...'")
+        logger.info(f"Processing query through LangGraph orchestration: '{query[:50]}...'")
         
         # Initialize state
         initial_state: AgentWorkflowState = {
@@ -884,7 +884,7 @@ class LangGraphRealEstateOrchestrator:
                 "synthesized_result": result_state["synthesized_result"]
             }
             
-            logger.info(f"✅ LangGraph orchestration completed in {execution_time:.2f}s")
+            logger.info(f" LangGraph orchestration completed in {execution_time:.2f}s")
             
             return final_result
             

@@ -21,7 +21,7 @@ def main():
     )
     
     # Title and description
-    st.title("🤖 AI-Powered Real Estate Search Engine")
+    st.title("🤖 ReAltoR Search Engine")
     st.markdown("*Multi-agent system with intelligent property search, memory, and reporting*")
     
     # Check system status
@@ -393,8 +393,8 @@ def create_sidebar():
         
         # Quick search templates
         st.subheader("⚡ Quick Searches")
-        if st.button("🏢 Apartments in Mumbai", use_container_width=True):
-            st.session_state.search_query = "2BHK apartments in Mumbai under 1 crore"
+        if st.button("🏢 Apartments in Hyderabad", use_container_width=True):
+            st.session_state.search_query = " apartments in Hyderabad"
         
         if st.button("🏡 Villas in Bangalore", use_container_width=True):
             st.session_state.search_query = "3BHK villa in Bangalore with garden"
@@ -403,7 +403,7 @@ def create_sidebar():
             st.session_state.search_query = "renovation cost for 1200 sqft apartment"
         
         if st.button("📊 Market Analysis", use_container_width=True):
-            st.session_state.search_query = "market analysis for properties in Delhi"
+            st.session_state.search_query = "market analysis for properties in Hyderabad"
         
         # Memory stats
         st.subheader("🧠 Memory Stats")

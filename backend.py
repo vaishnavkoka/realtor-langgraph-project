@@ -62,66 +62,66 @@ async def lifespan(app: FastAPI):
         logger.info("🤖 Initializing Individual Agents...")
         
         # 1. Memory Component (required by other agents)
-        logger.info("  🧠 Initializing Memory Component...")
+        logger.info("   Initializing Memory Component...")
         memory_component = MemoryComponent()
         all_agents["memory_component"] = memory_component
         
         # 2. Query Router Agent
-        logger.info("  🔍 Initializing Query Router Agent...")
+        logger.info("   Initializing Query Router Agent...")
         query_router = QueryRouterAgent()
         all_agents["query_router"] = query_router
         
         # 3. Structured Data Agent  
-        logger.info("  🗃️ Initializing Structured Data Agent...")
+        logger.info("  Initializing Structured Data Agent...")
         structured_agent = StructuredDataAgent()
         all_agents["structured_data"] = structured_agent
         
         # 4. RAG Agent
-        logger.info("  🧠 Initializing RAG Agent...")
+        logger.info("   Initializing RAG Agent...")
         rag_agent = RAGAgent()
         all_agents["rag"] = rag_agent
         
         # 5. Web Research Agent
-        logger.info("  🌐 Initializing Web Research Agent...")
+        logger.info("   Initializing Web Research Agent...")
         web_research_agent = WebResearchAgent()
         all_agents["web_research"] = web_research_agent
         
         # 6. Report Generation Agent
-        logger.info("  📊 Initializing Report Generation Agent...")
+        logger.info("   Initializing Report Generation Agent...")
         report_agent = ReportGenerationAgent()
         all_agents["report_generation"] = report_agent
         
         # 7. Renovation Estimation Agent
-        logger.info("  🔨 Initializing Renovation Estimation Agent...")
+        logger.info("   Initializing Renovation Estimation Agent...")
         renovation_agent = RenovationEstimationAgent()
         all_agents["renovation_estimation"] = renovation_agent
         
         # 8. Planner Agent
-        logger.info("  📋 Initializing Planner Agent...")
+        logger.info("   Initializing Planner Agent...")
         planner_agent = PlannerAgent()
         all_agents["planner"] = planner_agent
         
         # 9. Memory Enhanced Planner Agent
-        logger.info("  🧠📋 Initializing Memory Enhanced Planner Agent...")
+        logger.info("   Initializing Memory Enhanced Planner Agent...")
         memory_planner = MemoryEnhancedPlannerAgent()
         all_agents["memory_enhanced_planner"] = memory_planner
         
-        logger.info(f"✅ Successfully initialized {len(all_agents)} individual agents!")
+        logger.info(f"Successfully initialized {len(all_agents)} individual agents!")
         
         # Initialize LangGraph Orchestrator (coordinates all agents)
-        logger.info("🔀 Initializing LangGraph Orchestrator...")
+        logger.info(" Initializing LangGraph Orchestrator...")
         orchestrator = LangGraphRealEstateOrchestrator()
         
-        logger.info("✅ LangGraph Orchestrator initialized successfully")
-        logger.info(f"🎯 Complete System Ready: {len(all_agents)} Agents + Orchestrator")
+        logger.info(" LangGraph Orchestrator initialized successfully")
+        logger.info(f"Complete System Ready: {len(all_agents)} Agents + Orchestrator")
         
         # Log all available agents
         agent_names = list(all_agents.keys())
-        logger.info(f"🤖 Available Agents: {', '.join(agent_names)}")
+        logger.info(f" Available Agents: {', '.join(agent_names)}")
         
         # Test orchestrator
         test_result = await orchestrator.process_query("test query", user_id="test")
-        logger.info(f"✅ Orchestrator test successful: {test_result.get('final_response', 'OK')[:50]}...")
+        logger.info(f"Orchestrator test successful: {test_result.get('final_response', 'OK')[:50]}...")
         
     except Exception as e:
         logger.error(f"❌ Agent initialization failed: {e}")
