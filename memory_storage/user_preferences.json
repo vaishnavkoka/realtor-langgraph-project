@@ -1,0 +1,22 @@
+{
+  "demo_user_123": {
+    "user_id": "demo_user_123",
+    "preferred_locations": [
+      "Mumbai",
+      "Pune"
+    ],
+    "budget_range": {
+      "max": 8000000.0
+    },
+    "preferred_property_types": [
+      "apartment"
+    ],
+    "preferred_bhk_configs": [
+      "2BHK",
+      "3BHK"
+    ],
+    "preferred_amenities": [],
+    "created_at": "2025-11-08T14:12:16.459550",
+    "updated_at": "2025-11-08T14:12:16.460986"
+  }
+}

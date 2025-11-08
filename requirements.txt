@@ -8,4 +8,19 @@ sqlalchemy
 psycopg2-binary
 pandas
 openpyxl
+
+# LangChain and Multi-Agent Framework
+langchain>=0.3.0
+langchain-groq
+langchain-huggingface
+langchain-community
+groq
+tavily-python
+tiktoken
+
+# Additional utilities
+python-dotenv
+aiohttp
+beautifulsoup4
+redis
 pandas

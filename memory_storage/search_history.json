@@ -1,0 +1,20 @@
+[
+  {
+    "search_id": "search_demo_user_123_20251108_141216",
+    "user_id": "demo_user_123",
+    "query": "Find 2BHK apartments in Mumbai under 80 lakhs",
+    "results_count": 15,
+    "timestamp": "2025-11-08T14:12:16.459900",
+    "query_type": "search",
+    "satisfied": null
+  },
+  {
+    "search_id": "search_demo_user_123_20251108_141216",
+    "user_id": "demo_user_123",
+    "query": "Estimate renovation cost for 2BHK",
+    "results_count": 1,
+    "timestamp": "2025-11-08T14:12:16.460730",
+    "query_type": "renovation",
+    "satisfied": null
+  }
+]
