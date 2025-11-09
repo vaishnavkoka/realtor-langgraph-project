@@ -17,7 +17,7 @@ The project uses a `.env.template` file for secure API key management. **All fea
 #### Setup Environment Variables:
 ```bash
 # Copy the template file
-cp .env.template .env
+cp .env.example .env
 
 # Edit .env with your actual API keys
 nano .env  # or use any text editor
