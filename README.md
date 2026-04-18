@@ -185,4 +185,10 @@ Real-Estate-Search-Engine/
 - **Data**: 80+ properties with vector search capabilities
 - **Orchestration**: LangGraph for multi-agent workflows
 
+## 🙏 Acknowledgements
+
+I would like to express my sincere gratitude to "Muni" for his valuable support throughout this project. His insights and feedback played an important role in shaping the direction of this work.
+
+Thank you for your time, effort, and willingness to help.
+
 ## 🎉 You're Ready!
